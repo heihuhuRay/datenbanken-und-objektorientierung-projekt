@@ -1,9 +1,9 @@
 -- pgsql if else
 -- dbconn class
--- *****cascade delete
--- edit url 參數
+-- cascade delete
+-- edit with url id
+-- url get
 input put
-url get
 crud put
 
 *** foreign key cascade ***
@@ -18,3 +18,5 @@ table bootstrap optimize
 !!! check if fits all the requirements !!!
 
 繼承關係
+
+https://www.startutorial.com/articles/view/php-crud-tutorial-part-1
