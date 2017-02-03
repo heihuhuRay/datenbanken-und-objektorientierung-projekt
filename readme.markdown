@@ -78,7 +78,7 @@ Put "DBConn.php" into your work file. To initiate the application, simply create
 
 ## Contributing
 
-Anyone who wants to contribute to this project can simply fork/clone the repository from [here]. (https://github.com/yiweihsu/datenbanken-und-objektorientierung-projekt)
+Anyone who wants to contribute to this project can simply fork/clone the repository from [here](https://github.com/yiweihsu/datenbanken-und-objektorientierung-projekt).
 
 ## Help
 
@@ -111,7 +111,7 @@ As a developer, you need to set up the server to develop the application, such a
 
 Set up a valid "database name", "username", and "password" on the file DBConn.php to access the database. 
 
-More details about PostgreSQL configuration please visit the [website]. (https://www.postgresql.org/)
+More details about PostgreSQL configuration please visit the [website](https://www.postgresql.org/).
 
 ## Credits
 
