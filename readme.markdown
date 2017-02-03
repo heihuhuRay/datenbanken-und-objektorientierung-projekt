@@ -15,13 +15,17 @@ The library - "Datenbanken und Objektorientierung Projekt" offers a complete CRU
 
 Put "DBConn.php" into your work file. To initiate the application, simply create a new contructor. 
 
+### Init
+
 ```php
-	/* init */
 	$database = new DB;	// create a new contructor
 	$DB -> dbConn();	// connect to the database
+```
 
-	/* query example */
+### Query Example
 
+
+```php
 	// insert action
 	$query = "
 		INSERT INTO order_items(prod_id, ser_id, ret_id) 
@@ -33,7 +37,8 @@ Put "DBConn.php" into your work file. To initiate the application, simply create
 
   // join action
   $query = '
-  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
+  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, 
+    product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
   FROM product
  	  JOIN order_items
  		  ON product.prod_id = order_items.prod_id
@@ -45,7 +50,8 @@ Put "DBConn.php" into your work file. To initiate the application, simply create
 
   // combine multiple tables with condition statement
 	$query = '
-	  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
+	  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, 
+            product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
 		FROM product, order_items, service, retailer
 		WHERE order_items.prod_id = product.prod_id 
 		AND order_items.ser_id = service.ser_id
@@ -55,25 +61,20 @@ Put "DBConn.php" into your work file. To initiate the application, simply create
   // fetch the array from databse
   while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     echo '<tr>';
-    echo '<td>' . $arr['o_id'] . '</td>';
-    echo '<td>' . $arr['o_num'] . '</td>'; 
-    echo '<td>' . $arr['prod_name'] . '</td>'; 
-    echo '<td>' . $arr['cpu_model'] . '</td>'; 
-    echo '<td>' . $arr['scr_size'] . '</td>'; 
-    echo '<td>' . $arr['prod_price'] . '</td>'; 
-    echo '<td>' . $arr['ser_name'] . '</td>'; 
-    echo '<td>' . $arr['ret_name'] . '</td>'; 
-    echo '<td>' . '<a class="btn btn-success btn-sm" href="modify.php?id=' . $arr['o_id']. '">modify</a>' . '<td>';
-    echo '<td>' . '<a class="btn btn-danger btn-sm" href="delete.php?id=' . $arr['o_id'] . '">delete</a>' . '<td>';
+    echo '<td>' . $arr['COLUMN ID'] . '</td>';
+    echo '<td>' . $arr['COLUMN NAME'] . '</td>'; 
     echo '</tr>';
   }
+```
+### Close Connection
 
+```php
   // run query
   $DB -> runQuery($query);
 
   /* close database */
   $DB -> freeResult($result);	// free result memory
-	$DB -> dbClose();	// close the connection
+  $DB -> dbClose();	// close the connection
 ```
 
 ## Contributing
