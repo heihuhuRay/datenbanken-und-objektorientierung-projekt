@@ -18,45 +18,45 @@ Put "DBConn.php" into your work file. To initiate the application, simply create
 ### Init
 
 ```php
-	$database = new DB;	// create a new contructor
-	$DB -> dbConn();	// connect to the database
+  $database = new DB;	// create a new contructor
+  $DB -> dbConn();	// connect to the database
 ```
 
 ### Query Example
 
 
 ```php
-	// insert action
-	$query = "
-		INSERT INTO order_items(prod_id, ser_id, ret_id) 
-		VALUES (
-			'" . $_POST['product'] . "',
-			'". $_POST['service'] ."',
-			'". $_POST['retail'] ."'
-	);";
+  // insert action
+  $query = "
+  INSERT INTO order_items(prod_id, ser_id, ret_id) 
+    VALUES (
+    '" . $_POST['product'] . "',
+    '". $_POST['service'] ."',
+    '". $_POST['retail'] ."'
+  );";
 
   // join action
   $query = '
   SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, 
     product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
   FROM product
- 	  JOIN order_items
- 		  ON product.prod_id = order_items.prod_id
- 	  JOIN service
- 		  ON order_items.ser_id = service.ser_id
- 	  JOIN retailer
- 		  ON order_items.ret_id = retailer.ret_id
+    JOIN order_items
+      ON product.prod_id = order_items.prod_id
+    JOIN service
+      ON order_items.ser_id = service.ser_id
+    JOIN retailer
+      ON order_items.ret_id = retailer.ret_id
   ';
 
   // combine multiple tables with condition statement
-	$query = '
-	  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, 
-            product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
-		FROM product, order_items, service, retailer
-		WHERE order_items.prod_id = product.prod_id 
-		AND order_items.ser_id = service.ser_id
-		AND order_items.ret_id = retailer.ret_id
-	';
+  $query = '
+  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, 
+    product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
+  FROM product, order_items, service, retailer
+  WHERE order_items.prod_id = product.prod_id 
+  AND order_items.ser_id = service.ser_id
+  AND order_items.ret_id = retailer.ret_id
+  ';
 
   // fetch the array from databse
   while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC)) {
@@ -66,15 +66,17 @@ Put "DBConn.php" into your work file. To initiate the application, simply create
     echo '</tr>';
   }
 ```
+
+### Run Query
+```php
+  $DB -> runQuery($query);
+```
+
 ### Close Connection
 
-```php
-  // run query
-  $DB -> runQuery($query);
-
-  /* close database */
-  $DB -> freeResult($result);	// free result memory
-  $DB -> dbClose();	// close the connection
+```php  
+  $DB -> freeResult($result); // free result memory
+  $DB -> dbClose();           // close the connection
 ```
 
 ## Contributing
