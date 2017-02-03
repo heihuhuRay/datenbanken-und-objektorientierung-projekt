@@ -8,14 +8,10 @@ crud put
 
 *** foreign key cascade ***
 constraint
-
 order num auto increment reset
-
 add comfrim button before deleting
 
 table bootstrap optimize
-
-parent table, child table
 
 !!! service can be empty !!!!!
 !!! upload to github !!!
