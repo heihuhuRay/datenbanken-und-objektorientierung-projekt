@@ -9,17 +9,17 @@ The library is aimed to offer a CRUD (create, read, update and delete) features,
 
 Put "DBConn.php" into the work file. To initiate the application, simply create a new contructor of it. 
 
-(ex: 
+```php
 	$database = new DB;						// create a new contructor
 	$DB -> dbConn();							// connect to the database
 	$DB -> runQuery($query);			// execute query and return the result
 	$DB -> freeResult($result);		// free result memory
 	$DB -> dbClose();							// close the connection
-)
+```
 
 ## Contributing
 
-If one wants to contribute to the project, one can easily clone the repository from here: https://github.com/yiweihsu/datenbanken-und-objektorientierung-projekt
+If one wants to contribute to the project, one can easily clone the repository from [here] (https://github.com/yiweihsu/datenbanken-und-objektorientierung-projekt)
 
 ## Help
 
@@ -37,7 +37,7 @@ The project is web-based, using PHP as server programming language. To run the a
 
 2. Clone your forked repository (not our original one) to your hard drive with git clone https://github.com/YOURUSERNAME/datenbanken-und-objektorientierung-projekt.git
 
-3. cd datenbanken-und-objektorientierung-projekt
+3. ```cd datenbanken-und-objektorientierung-projekt```
 
 4. Set the configuration such as "hostname", "port", "databse username", "database password" in DBConn.php file.
 
