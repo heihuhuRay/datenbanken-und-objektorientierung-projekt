@@ -21,7 +21,7 @@ pg_query($query);
 
 $DB -> dbClose();
 
-header('Location: main.php');
+header('Location: index.php');
 exit;
 
 ?>
