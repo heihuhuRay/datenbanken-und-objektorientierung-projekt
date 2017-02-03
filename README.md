@@ -15,70 +15,73 @@ The library - "Datenbanken und Objektorientierung Projekt" offers a complete CRU
 
 Put "DBConn.php" into your work file. To initiate the application, simply create a new contructor. 
 
+### Init
+
 ```php
-	/* init */
-	$database = new DB;	// create a new contructor
-	$DB -> dbConn();	// connect to the database
+  $database = new DB;	// create a new contructor
+  $DB -> dbConn();	// connect to the database
+```
 
-	/* query example */
+### Query Example
 
-	// insert action
-	$query = "
-		INSERT INTO order_items(prod_id, ser_id, ret_id) 
-		VALUES (
-			'" . $_POST['product'] . "',
-			'". $_POST['service'] ."',
-			'". $_POST['retail'] ."'
-	);";
+
+```php
+  // insert action
+  $query = "
+  INSERT INTO order_items(prod_id, ser_id, ret_id) 
+    VALUES (
+    '" . $_POST['product'] . "',
+    '". $_POST['service'] ."',
+    '". $_POST['retail'] ."'
+  );";
 
   // join action
   $query = '
-  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
+  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, 
+    product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
   FROM product
- 	  JOIN order_items
- 		  ON product.prod_id = order_items.prod_id
- 	  JOIN service
- 		  ON order_items.ser_id = service.ser_id
- 	  JOIN retailer
- 		  ON order_items.ret_id = retailer.ret_id
+    JOIN order_items
+      ON product.prod_id = order_items.prod_id
+    JOIN service
+      ON order_items.ser_id = service.ser_id
+    JOIN retailer
+      ON order_items.ret_id = retailer.ret_id
   ';
 
   // combine multiple tables with condition statement
-	$query = '
-	  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
-		FROM product, order_items, service, retailer
-		WHERE order_items.prod_id = product.prod_id 
-		AND order_items.ser_id = service.ser_id
-		AND order_items.ret_id = retailer.ret_id
-	';
+  $query = '
+  SELECT order_items.o_id, order_items.o_num, product.prod_name, product.cpu_model, 
+    product.scr_size, product.prod_price, service.ser_name, retailer.ret_name
+  FROM product, order_items, service, retailer
+  WHERE order_items.prod_id = product.prod_id 
+  AND order_items.ser_id = service.ser_id
+  AND order_items.ret_id = retailer.ret_id
+  ';
 
   // fetch the array from databse
   while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     echo '<tr>';
-    echo '<td>' . $arr['o_id'] . '</td>';
-    echo '<td>' . $arr['o_num'] . '</td>'; 
-    echo '<td>' . $arr['prod_name'] . '</td>'; 
-    echo '<td>' . $arr['cpu_model'] . '</td>'; 
-    echo '<td>' . $arr['scr_size'] . '</td>'; 
-    echo '<td>' . $arr['prod_price'] . '</td>'; 
-    echo '<td>' . $arr['ser_name'] . '</td>'; 
-    echo '<td>' . $arr['ret_name'] . '</td>'; 
-    echo '<td>' . '<a class="btn btn-success btn-sm" href="modify.php?id=' . $arr['o_id']. '">modify</a>' . '<td>';
-    echo '<td>' . '<a class="btn btn-danger btn-sm" href="delete.php?id=' . $arr['o_id'] . '">delete</a>' . '<td>';
+    echo '<td>' . $arr['COLUMN ID'] . '</td>';
+    echo '<td>' . $arr['COLUMN NAME'] . '</td>'; 
     echo '</tr>';
   }
+```
 
-  // run query
+### Run Query
+```php
   $DB -> runQuery($query);
+```
 
-  /* close database */
-  $DB -> freeResult($result);	// free result memory
-	$DB -> dbClose();	// close the connection
+### Close Connection
+
+```php  
+  $DB -> freeResult($result); // free result memory
+  $DB -> dbClose();           // close the connection
 ```
 
 ## Contributing
 
-Anyone who wants to contribute to this project can simply fork/clone the repository from [here]. (https://github.com/yiweihsu/datenbanken-und-objektorientierung-projekt)
+Anyone who wants to contribute to this project can simply fork/clone the repository from [here](https://github.com/yiweihsu/datenbanken-und-objektorientierung-projekt).
 
 ## Help
 
@@ -111,7 +114,7 @@ As a developer, you need to set up the server to develop the application, such a
 
 Set up a valid "database name", "username", and "password" on the file DBConn.php to access the database. 
 
-More details about PostgreSQL configuration please visit the [website]. (https://www.postgresql.org/)
+More details about PostgreSQL configuration please visit the [website](https://www.postgresql.org/).
 
 ## Credits
 
