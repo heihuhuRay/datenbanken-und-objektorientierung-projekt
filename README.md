@@ -10,11 +10,11 @@ The library is aimed to offer a CRUD (create, read, update and delete) features,
 Put "DBConn.php" into the work file. To initiate the application, simply create a new contructor of it. 
 
 ```php
-	$database = new DB;						// create a new contructor
-	$DB -> dbConn();							// connect to the database
-	$DB -> runQuery($query);			// execute query and return the result
-	$DB -> freeResult($result);		// free result memory
-	$DB -> dbClose();							// close the connection
+	$database = new DB;	// create a new contructor
+	$DB -> dbConn();	// connect to the database
+	$DB -> runQuery($query);	// execute query and return the result
+	$DB -> freeResult($result);	// free result memory
+	$DB -> dbClose();	// close the connection
 ```
 
 ## Contributing
