@@ -57,7 +57,7 @@ class Relation(object):
 		self.C_Relation = C_Relation
 		self.A_Relation = A_Relation
 		
-	def set_C_Relation(self, E1, E2):	#C_Relation: Characteristic Relation
+	def set_CG_Relation(self, E1, E2):	#C_Relation: Characteristic Relation
 		C_dic = {'SUB': None, 'SUP': None}
 		C_dic['SUB'] = E1.Entity_name
 		C_dic['SUP'] = E2.Entity_name
@@ -108,7 +108,10 @@ class Relation(object):
 		table.show()
 		return app.exec_()
 
-	def show_C_Relation(self, C_list):
+	def show_PG_Relaion(self):
+		pass
+
+	def show_CG_Relation(self, C_list):
 		app 	= QApplication(sys.argv)
 		table 	= QTableWidget()
 		tableItem 	= QTableWidgetItem()
@@ -199,12 +202,12 @@ class Relation(object):
 
 	# E3 = E_Relation('Order')
 	# Kernel_Entity.append(E3.Entity_name)
-	# set_C_Relation(E1, E2)
+	# set_CG_Relation(E1, E2)
 	# set_A_Relation([E1, E2, E3])
 
 	# # show_E_Relation(Kernel_Entity)
 	# show_P_Relation(E1)
-	# # show_C_Relation(C_Relation)
+	# # show_CG_Relation(C_Relation)
 	# print(A_Relation)
 	# show_A_Relation(A_Relation)
 
