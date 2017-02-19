@@ -143,7 +143,7 @@ class Relation(object):
 		tableItem 	= QTableWidgetItem()
 
 		# initiate table
-		table.setWindowTitle("Associative Graph Relation")
+		table.setWindowTitle("Associative Relation")
 		table.resize(400, 250)
 		table.setRowCount(2)
 		table.setColumnCount(3)
@@ -151,7 +151,7 @@ class Relation(object):
 		# set data
 		for a in A_list:
 			for n in a:
-				table.setItem(0, a.index(n), QTableWidgetItem(n))
+				table.setItem(0, a.index(n), QTableWidgetItem(n+u'\u00a2'))
 		# table.setItem(0,0, QTableWidgetItem("Item (1,1)"))
 		# table.setItem(0,1, QTableWidgetItem("Item (1,2)"))
 		# table.setItem(1,0, QTableWidgetItem("Item (2,1)"))
