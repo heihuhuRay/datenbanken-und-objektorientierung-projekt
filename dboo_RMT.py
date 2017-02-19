@@ -11,17 +11,20 @@ import sys
 
 ############################################################################################################################
 class E_Relation(object):
-	Property_list = []
+	#Property_list = []
 
-	def __init__(self, Entity_name):
+	def __init__(self, Entity_name, Property_list = []):
 		self.Entity_name = Entity_name
+		self.Property_list = [] # ?????????????????????
 		print("An entity is created!")
+		print(self.Property_list)
 
 	def __del__(self):
 		class_name = self.__class__.__name__
 		#print(class_name,"is deleted")
 
 	def add_P_Relation(self, P_list):
+		#self.P_list = P_list
 		self.Property_list += P_list
 
 	def modify_P_Relation(self, old_P_name, new_P_name):
