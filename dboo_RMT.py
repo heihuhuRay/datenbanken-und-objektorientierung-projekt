@@ -10,7 +10,7 @@ import sys
  
 
 ############################################################################################################################
-class E_Relation(object):
+class Entity(object):
 	#Property_list = []
 
 	def __init__(self, Entity_name, Property_list = []):
@@ -21,8 +21,15 @@ class E_Relation(object):
 
 	def __del__(self):
 		class_name = self.__class__.__name__
-		#print(class_name,"is deleted")
+		print(self.Entity_name,"is deleted")
 
+	def delete_Entity(self, R):
+		for l in R.C_Relation:
+			if self.Entity_name == l['SUP'].Entity_name:
+				print("delete :", self.Entity_name, 'and', l['SUP'].Entity_name)
+				self.__del__()
+				l['SUB'].__del__()
+		
 	def add_P_Relation(self, P_list):
 		#self.P_list = P_list
 		self.Property_list += P_list
@@ -57,10 +64,12 @@ class Relation(object):
 		self.C_Relation = C_Relation
 		self.A_Relation = A_Relation
 		
-	def set_CG_Relation(self, E1, E2):	#C_Relation: Characteristic Relation
+	def set_C_Relation(self, SUB_E, SUP_E):	#C_Relation: Characteristic Relation
 		C_dic = {'SUB': None, 'SUP': None}
-		C_dic['SUB'] = E1.Entity_name
-		C_dic['SUP'] = E2.Entity_name
+		#C_dic['SUB'] = SUB_E.Entity_name
+		C_dic['SUB'] = SUB_E
+		#C_dic['SUP'] = SUP_E.Entity_name
+		C_dic['SUP'] = SUP_E
 		self.C_Relation.append(C_dic)
 
 	def set_A_Relation(self, E_list): #A_Relation: Associative Relation
@@ -69,7 +78,7 @@ class Relation(object):
 			E_name_list.append(e.Entity_name)
 		self.A_Relation.append(E_name_list)
 	###########################################################################################################################
-	def show_E_Relation(self, K_list): 
+	def show_Entity(self, K_list): 
 		app 	= QApplication(sys.argv)
 		table 	= QTableWidget()
 		tableItem 	= QTableWidgetItem()
@@ -93,7 +102,7 @@ class Relation(object):
 		table 	= QTableWidget()
 		tableItem 	= QTableWidgetItem()
 		# initiate table
-		table.setWindowTitle("P Relation")
+		table.setWindowTitle("P Relation of "+E.Entity_name)
 		table.resize(400, 250)
 		table.setRowCount(2)
 		table.setColumnCount(len(E.Property_list)+1)
@@ -108,8 +117,31 @@ class Relation(object):
 		table.show()
 		return app.exec_()
 
-	def show_PG_Relaion(self):
-		pass
+	def show_PG_Relaion(self, E):
+		app 	= QApplication(sys.argv)
+		table 	= QTableWidget()
+		tableItem 	= QTableWidgetItem()
+
+		# initiate table
+		table.setWindowTitle("Property Graph Relation of "+E.Entity_name)
+		table.resize(400, 250)
+		table.setRowCount(len(E.Property_list)+1)
+		table.setColumnCount(2)
+
+		# set data
+		table.setItem(0,0, QTableWidgetItem('SUB'))
+		table.setItem(0,1, QTableWidgetItem('SUP'))
+		for e in E.Property_list:
+			table.setItem(E.Property_list.index(e)+1, 0, QTableWidgetItem(e))
+			table.setItem(E.Property_list.index(e)+1, 1, QTableWidgetItem(E.Entity_name))
+
+		#hide labels
+		table.verticalHeader().setVisible(False)
+		table.horizontalHeader().setVisible(False)
+
+		# show table
+		table.show()
+		return app.exec_()
 
 	def show_CG_Relation(self, C_list):
 		app 	= QApplication(sys.argv)
@@ -126,8 +158,8 @@ class Relation(object):
 		table.setItem(0,0, QTableWidgetItem('SUB'))
 		table.setItem(0,1, QTableWidgetItem('SUP'))
 		for c in C_list:
-			table.setItem(C_list.index(c)+1, 0, QTableWidgetItem(c['SUB']))
-			table.setItem(C_list.index(c)+1, 1, QTableWidgetItem(c['SUP']))
+			table.setItem(C_list.index(c)+1, 0, QTableWidgetItem(c['SUB'].Entity_name))
+			table.setItem(C_list.index(c)+1, 1, QTableWidgetItem(c['SUP'].Entity_name))
 
 		#hide labels
 		table.verticalHeader().setVisible(False)
@@ -136,6 +168,9 @@ class Relation(object):
 		# show table
 		table.show()
 		return app.exec_()
+
+	def show_AG_Relation(self, A_list):
+		pass
 
 	def show_A_Relation(self, A_list):
 		app 	= QApplication(sys.argv)
@@ -168,10 +203,12 @@ class Relation(object):
 		return app.exec_()
 
 
+
 	
 
 
 # if __name__ == '__main__':
+	# C_Relation
 	# [ {
 	#	 'SUB': 'Mobile',
 	#	 'SUP': 'Name'
@@ -190,22 +227,22 @@ class Relation(object):
 	# C_Relation = []
 	# A_Relation = []	
 
-	# E1 = E_Relation('Mobile') 
+	# E1 = Entity('Mobile') 
 	# E1.add_P_Relation(['Name', 'ID'])
 	# print(E1.Property_list)
 	# E1.modify_P_Relation('ID', 'id_num')
 	# Kernel_Entity.append(E1.Entity_name)
 
-	# E2 = E_Relation('Employee')
+	# E2 = Entity('Employee')
 	# E2.add_P_Relation(['Job', 'Salary'])
 	# Kernel_Entity.append(E2.Entity_name)
 
-	# E3 = E_Relation('Order')
+	# E3 = Entity('Order')
 	# Kernel_Entity.append(E3.Entity_name)
-	# set_CG_Relation(E1, E2)
+	# set_C_Relation(E1, E2)
 	# set_A_Relation([E1, E2, E3])
 
-	# # show_E_Relation(Kernel_Entity)
+	# # show_Entity(Kernel_Entity)
 	# show_P_Relation(E1)
 	# # show_CG_Relation(C_Relation)
 	# print(A_Relation)
