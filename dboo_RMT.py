@@ -13,9 +13,10 @@ import sys
 class Entity(object):
 	#Property_list = []
 
-	def __init__(self, Entity_name, Property_list = []):
+	def __init__(self, Entity_name, R, Property_list = []):
 		self.Entity_name = Entity_name
 		self.Property_list = [] # ?????????????????????
+		R.Kernel_Entity.append(self.Entity_name)
 		print("An entity is created!")
 		print(self.Property_list)
 
@@ -117,6 +118,39 @@ class Relation(object):
 		table.show()
 		return app.exec_()
 
+	def show_C_Relation(self, C_list):
+		pass
+
+	def show_A_Relation(self, A_list):
+		app 	= QApplication(sys.argv)
+		table 	= QTableWidget()
+		tableItem 	= QTableWidgetItem()
+
+		# initiate table
+		table.setWindowTitle("Associative Relation")
+		table.resize(400, 250)
+		table.setRowCount(2)
+		table.setColumnCount(3)
+
+		# set data
+		for a in A_list:
+			for n in a:
+				table.setItem(0, a.index(n), QTableWidgetItem(n+u'\u00a2'))
+		# table.setItem(0,0, QTableWidgetItem("Item (1,1)"))
+		# table.setItem(0,1, QTableWidgetItem("Item (1,2)"))
+		# table.setItem(1,0, QTableWidgetItem("Item (2,1)"))
+		# table.setItem(1,1, QTableWidgetItem("Item (2,2)"))
+		# table.setItem(2,0, QTableWidgetItem("Item (3,1)"))
+		# table.setItem(2,1, QTableWidgetItem("Item (3,2)"))
+		# table.setItem(3,0, QTableWidgetItem("Item (4,1)"))
+		# table.setItem(3,1, QTableWidgetItem("Item (4,2)"))
+		#hide labels
+		table.verticalHeader().setVisible(False)
+		table.horizontalHeader().setVisible(False)
+		# show table
+		table.show()
+		return app.exec_()
+
 	def show_PG_Relaion(self, E):
 		app 	= QApplication(sys.argv)
 		table 	= QTableWidget()
@@ -172,35 +206,7 @@ class Relation(object):
 	def show_AG_Relation(self, A_list):
 		pass
 
-	def show_A_Relation(self, A_list):
-		app 	= QApplication(sys.argv)
-		table 	= QTableWidget()
-		tableItem 	= QTableWidgetItem()
-
-		# initiate table
-		table.setWindowTitle("Associative Relation")
-		table.resize(400, 250)
-		table.setRowCount(2)
-		table.setColumnCount(3)
-
-		# set data
-		for a in A_list:
-			for n in a:
-				table.setItem(0, a.index(n), QTableWidgetItem(n+u'\u00a2'))
-		# table.setItem(0,0, QTableWidgetItem("Item (1,1)"))
-		# table.setItem(0,1, QTableWidgetItem("Item (1,2)"))
-		# table.setItem(1,0, QTableWidgetItem("Item (2,1)"))
-		# table.setItem(1,1, QTableWidgetItem("Item (2,2)"))
-		# table.setItem(2,0, QTableWidgetItem("Item (3,1)"))
-		# table.setItem(2,1, QTableWidgetItem("Item (3,2)"))
-		# table.setItem(3,0, QTableWidgetItem("Item (4,1)"))
-		# table.setItem(3,1, QTableWidgetItem("Item (4,2)"))
-		#hide labels
-		table.verticalHeader().setVisible(False)
-		table.horizontalHeader().setVisible(False)
-		# show table
-		table.show()
-		return app.exec_()
+	
 
 
 

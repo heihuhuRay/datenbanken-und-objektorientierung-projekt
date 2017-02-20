@@ -7,13 +7,13 @@ if __name__ == '__main__':
 	# init Relation object
 	R1 = RMT.Relation()	
 	# new Entity
-	E1 = RMT.Entity('Mobile')
-	E2 = RMT.Entity('Order')
-	E3 = RMT.Entity('AfterSales')
+	E1 = RMT.Entity('Mobile', R1)
+	E2 = RMT.Entity('Order', R1)
+	E3 = RMT.Entity('AfterSales', R1)
 	# add to Kernel_Entity list
-	R1.Kernel_Entity.append(E1.Entity_name)
-	R1.Kernel_Entity.append(E2.Entity_name)
-	R1.Kernel_Entity.append(E3.Entity_name)
+	# R1.Kernel_Entity.append(E1.Entity_name)
+	# R1.Kernel_Entity.append(E2.Entity_name)
+	# R1.Kernel_Entity.append(E3.Entity_name)
 	# add P_Relation
 	E1.add_P_Relation(['IMEI', 'Name'])
 	E2.add_P_Relation(['Date', 'Price'])
