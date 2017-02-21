@@ -29,7 +29,13 @@ class Entity(object):
 			if self.Entity_name == l['SUP'].Entity_name:
 				print("delete :", self.Entity_name, 'and', l['SUP'].Entity_name)
 				self.__del__()
+				R.Kernel_Entity.remove(self.Entity_name)
 				l['SUB'].__del__()
+				R.Kernel_Entity.remove(l['SUB'].Entity_name)
+			if self.Entity_name == l['SUB'].Entity_name:
+				print("delete :", self.Entity_name, 'and', l['SUP'].Entity_name)
+				self.__del__()
+				R.Kernel_Entity.remove(self.Entity_name)
 		
 	def add_P_Relation(self, P_list):
 		#self.P_list = P_list
@@ -38,13 +44,21 @@ class Entity(object):
 	def modify_P_Relation(self, old_P_name, new_P_name):
 		if '' == new_P_name:
 			print("Error: new_P_name can not be empty!")
+			msg = QMessageBox()
+			msg.setIcon(QMessageBox.Critical)
+			msg.setText("Error: new_P_name can not be empty!")
 		is_correct_old_name = False
 		for p in self.Property_list:
 			if old_P_name == p:
-				p = new_P_name
+				i = self.Property_list.index(p)
+				self.Property_list[i] = new_P_name
+				print('!!!!!!!!!!')
 				is_correct_old_name = True
 		if False == is_correct_old_name:
 			print("Error: old_P_name not corrected!")
+			msg = QMessageBox()
+			msg.setIcon(QMessageBox.Critical)
+			msg.setText("Error: old_P_name not match!")
 
 	def delete_P_Relation(self, P_name):
 		if '' == P_name:
@@ -85,7 +99,7 @@ class Relation(object):
 		tableItem 	= QTableWidgetItem()
 		# initiate table
 		table.setWindowTitle("E Relation")
-		table.resize(400, 250)
+		table.resize(400, 500)
 		table.setRowCount(2*len(K_list))
 		table.setColumnCount(1)
 		# set data
