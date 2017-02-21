@@ -16,8 +16,8 @@ if __name__ == '__main__':
 	E3 = RMT.Entity('AfterSales', R1)
 	# add Property
 	E1.add_P_Relation(['IMEI', 'Name'])
-	E2.add_P_Relation(['Date', 'Price', '1111'])
-	E3.add_P_Relation(['ID', 'Years'])
+	E2.add_P_Relation(['Date', 'Price'])
+	E3.add_P_Relation(['ID', 'Year'])
 	# show E Relation
 	R1.show_Entity(R1.Kernel_Entity)
 	# show P_Relation

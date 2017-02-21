@@ -8,6 +8,13 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import * 
 import sys
  
+def show_Err(message):
+	# Create an PyQT4 application object.
+	a = QApplication(sys.argv)       	 
+	w = QWidget()
+	QMessageBox.warning(w, "Error", message)
+	#sys.exit(a.exec_())
+
 
 ############################################################################################################################
 class Entity(object):
@@ -44,32 +51,29 @@ class Entity(object):
 	def modify_P_Relation(self, old_P_name, new_P_name):
 		if '' == new_P_name:
 			print("Error: new_P_name can not be empty!")
-			msg = QMessageBox()
-			msg.setIcon(QMessageBox.Critical)
-			msg.setText("Error: new_P_name can not be empty!")
+			show_Err("Error: new_P_name can not be empty!")
 		is_correct_old_name = False
 		for p in self.Property_list:
 			if old_P_name == p:
 				i = self.Property_list.index(p)
 				self.Property_list[i] = new_P_name
-				print('!!!!!!!!!!')
 				is_correct_old_name = True
 		if False == is_correct_old_name:
-			print("Error: old_P_name not corrected!")
-			msg = QMessageBox()
-			msg.setIcon(QMessageBox.Critical)
-			msg.setText("Error: old_P_name not match!")
+			print("Error: old_P_name not match!")
+			show_Err("Error: old_P_name not match!")
 
 	def delete_P_Relation(self, P_name):
 		if '' == P_name:
 			print("Error: P_name can not be empty!")
+			show_Err("Error: new_P_name can not be empty!")
 		is_correct_P_name = False
 		for p in self.Property_list:
 			if P_name == p:
 				self.Property_list.remove(P_name)
 				is_correct_P_name = True
 		if False == is_correct_P_name:
-			print("Error: P_name not corrected!")
+			print("Error: P_name not match!")
+			show_Err("Error: P_name not match!")
 
 ############################################################################################################################
 class Relation(object):

@@ -18,12 +18,20 @@ if __name__ == '__main__':
 	E1.add_P_Relation(['IMEI', 'Name'])
 	E2.add_P_Relation(['Date', 'Price', '1111'])
 	E3.add_P_Relation(['ID', 'Years'])
-	# modify P_Relation
-	E1.modify_P_Relation('Name', 'fuck') # Error : name not match!
-	E2.delete_P_Relation('1111')
-	E3.modify_P_Relation('Years', 'Year') # modify_P_Relation(old_P_name, new_P_name)
 	
-	# show P_Relation
+
+	# modify P_Relation
 	R1.show_P_Relation(E1)
+	E1.modify_P_Relation('...', 'Error') # Error : name not match!
+	
 	R1.show_P_Relation(E2)
+	E2.delete_P_Relation('1111')
+	R1.show_P_Relation(E2)
+
 	R1.show_P_Relation(E3)
+	E3.modify_P_Relation('Years', 'Year') # modify_P_Relation(old_P_name, new_P_name)
+	R1.show_P_Relation(E3)
+	# show P_Relation
+	
+	
+	
