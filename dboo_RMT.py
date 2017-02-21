@@ -17,11 +17,11 @@ def show_Err(message):
 
 ############################################################################################################################
 class Entity(object):
-	#Property_list = []
+	Property_list = []
 
-	def __init__(self, Entity_name, R, Property_list = []):
+	def __init__(self, Entity_name, R): #, Property_list = []
 		self.Entity_name = Entity_name
-		self.Property_list = [] # ?????????????????????
+		#self.Property_list = [] # ?????????????????????
 		R.Kernel_Entity.append(self.Entity_name)
 		print("An entity is created!")
 		print(self.Property_list)
