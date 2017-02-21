@@ -15,7 +15,6 @@ def show_Err(message):
 	QMessageBox.warning(w, "Error", message)
 	#sys.exit(a.exec_())
 
-
 ############################################################################################################################
 class Entity(object):
 	#Property_list = []
@@ -223,7 +222,20 @@ class Relation(object):
 
 	def show_AG_Relation(self, A_list):
 		pass
+######################################################################################################
+# When trying to connect to databse
+# useful link :https://wiki.postgresql.org/wiki/Psycopg2_Tutorial
+#import psycopg2
 
+# try:
+#     conn = psycopg2.connect("dbname='template1' user='dbuser' host='localhost' password='dbpass'")
+# except:
+#     print "I am unable to connect to the database"
+
+# cur = conn.cursor()
+
+# cur.execute("""SELECT datname from pg_database""")
+######################################################################################################
 	
 
 
